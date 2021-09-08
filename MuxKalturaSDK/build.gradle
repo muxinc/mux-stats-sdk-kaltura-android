@@ -29,4 +29,6 @@ android {
 }
 
 dependencies {
+    api 'com.kaltura.playkit:playkit:4.16.0@aar'
+    api 'com.mux:stats.muxcore:7.0.2'
 }

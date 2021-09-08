@@ -33,4 +33,5 @@ android {
 
 dependencies {
     implementation project(path: ':MuxKalturaSDK')
+    implementation 'com.kaltura.player:tvplayer:4.16.0'
 }

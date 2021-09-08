@@ -4,6 +4,13 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
+        maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
+
+        // Both our release and dev repos are imported, whereas library consumers only
+        // need our release repo
+        maven { url 'https://muxinc.jfrog.io/artifactory/default-maven-release-local' }
+        maven { url 'https://muxinc.jfrog.io/artifactory/default-maven-local' }
     }
 }
 rootProject.name = "mux-stats-sdk-kaltura"
