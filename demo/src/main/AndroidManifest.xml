@@ -3,6 +3,7 @@
   package="com.mux.stats.sdk.kaltura">
 
   <application
+    android:name=".example.ExampleApp"
     android:icon="@drawable/ic_launcher"
     android:label="@string/app_name">
     <activity android:name=".example.MainActivity">
