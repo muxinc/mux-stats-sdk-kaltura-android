@@ -2,9 +2,6 @@ package com.mux.stats.sdk.kaltura.example;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -13,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import com.kaltura.netkit.utils.ErrorElement;
+import com.kaltura.playkit.PKEvent;
+import com.kaltura.playkit.PKEvent.Listener;
 import com.kaltura.playkit.PKMediaEntry;
 import com.kaltura.playkit.PlayerEvent;
 import com.kaltura.playkit.PlayerState;
@@ -32,6 +31,13 @@ public class MainActivity extends Activity {
   private PlayerState playerState;
 
   private ImageButton playButton;
+
+  private PKEvent.Listener eventListener = new Listener() {
+    @Override
+    public void onEvent(PKEvent event) {
+      updateUI();
+    }
+  };
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,7 +94,7 @@ public class MainActivity extends Activity {
       @Override
       public void onEntryLoadComplete(MediaOptions mediaOptions, PKMediaEntry entry, ErrorElement error) {
         if (error != null) {
-          Toast.makeText(MainActivity.this, error.getMessage(), 10);
+          Toast.makeText(MainActivity.this, error.getMessage(), 10).show();
         }
       }
     });
@@ -100,12 +106,14 @@ public class MainActivity extends Activity {
       updateUI();
     });
 
-    player.addListener(this, PlayerEvent.playing, event -> {
-      updateUI();
-    });
-
-    player.addListener(this, PlayerEvent.pause, event -> {
-      updateUI();
-    });
+    player.addListener(this, PlayerEvent.canPlay, eventListener);
+    player.addListener(this, PlayerEvent.ended, eventListener);
+    player.addListener(this, PlayerEvent.loadedMetadata, eventListener);
+    player.addListener(this, PlayerEvent.pause, eventListener);
+    player.addListener(this, PlayerEvent.play, eventListener);
+    player.addListener(this, PlayerEvent.playing, eventListener);
+    player.addListener(this, PlayerEvent.seeked, eventListener);
+    player.addListener(this, PlayerEvent.replay, eventListener);
+    player.addListener(this, PlayerEvent.stopped, eventListener);
   }
 }
