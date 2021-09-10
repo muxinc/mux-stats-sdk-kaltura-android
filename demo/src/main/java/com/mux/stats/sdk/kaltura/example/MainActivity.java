@@ -2,6 +2,9 @@ package com.mux.stats.sdk.kaltura.example;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -28,15 +31,18 @@ public class MainActivity extends Activity {
   private KalturaPlayer player;
   private PlayerState playerState;
 
+  private ImageButton playButton;
+
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     MuxKaltura.hello();
     setContentView(R.layout.activity_main);
 
     initPlaykitPlayer();
 
-    final ImageButton playButton = findViewById(R.id.activity_main_play_button);
+    playButton = findViewById(R.id.activity_main_play_button);
     playButton.setOnClickListener(
         new OnClickListener() {
           @Override
@@ -44,15 +50,24 @@ public class MainActivity extends Activity {
             if(player != null) {
               if(player.isPlaying()) {
                 player.pause();
-                playButton.setImageResource(R.drawable.exo_controls_play);
               } else {
                 player.play();
-                playButton.setImageResource(R.drawable.exo_controls_pause);
               }
             }
           }
         });
 
+    updateUI();
+  }
+
+  private void updateUI() {
+    if(player != null) {
+      if(player.isPlaying()) {
+        playButton.setImageResource(R.drawable.exo_controls_pause);
+      } else {
+        playButton.setImageResource(R.drawable.exo_controls_play);
+      }
+    }
   }
 
   private void initPlaykitPlayer() {
@@ -80,6 +95,17 @@ public class MainActivity extends Activity {
 
     this.player = player;
 
-    player.addListener(this, PlayerEvent.stateChanged, event -> playerState = event.newState);
+    player.addListener(this, PlayerEvent.stateChanged, event -> {
+      playerState = event.newState;
+      updateUI();
+    });
+
+    player.addListener(this, PlayerEvent.playing, event -> {
+      updateUI();
+    });
+
+    player.addListener(this, PlayerEvent.pause, event -> {
+      updateUI();
+    });
   }
 }
