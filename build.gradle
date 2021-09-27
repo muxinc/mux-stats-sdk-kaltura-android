@@ -5,10 +5,33 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.0-beta04"
+        classpath 'com.android.tools.build:gradle:4.1.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
+        maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
+
+        // Both our release and dev repos are imported, whereas library consumers only
+        // need our release repo
+        maven { url 'https://muxinc.jfrog.io/artifactory/default-maven-release-local' }
+        maven { url 'https://muxinc.jfrog.io/artifactory/default-maven-local' }
+    }
+
+    project.ext {
+        versionName = "indev-kaltura-version"
+
+        minSdkVersion=24
+        compileSdkVersion=30
+        targetSdkVersion=30
     }
 }
 
