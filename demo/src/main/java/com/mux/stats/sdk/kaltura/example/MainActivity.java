@@ -23,7 +23,7 @@ import com.kaltura.tvplayer.MediaOptions;
 import com.kaltura.tvplayer.OVPMediaOptions;
 import com.kaltura.tvplayer.PlayerInitOptions;
 import com.mux.stats.sdk.kaltura.R;
-import com.mux.stats.sdk.muxkalturasdk.MuxKaltura;
+import com.mux.stats.sdk.muxkalturasdk.MuxStatsKaltura;
 
 public class MainActivity extends Activity {
   private String entryId = "1_w9zx2eti";
@@ -43,7 +43,6 @@ public class MainActivity extends Activity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    MuxKaltura.hello();
     setContentView(R.layout.activity_main);
 
     initPlaykitPlayer();

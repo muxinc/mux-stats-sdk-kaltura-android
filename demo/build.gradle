@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk project.ext.compileSdkVersion
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.mux.stats.sdk.kaltura"
-        minSdk 24
-        targetSdk 30
+        minSdk project.ext.minSdkVersion
+        targetSdk project.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
