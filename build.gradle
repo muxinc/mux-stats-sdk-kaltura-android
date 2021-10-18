@@ -18,7 +18,6 @@ allprojects {
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
         maven { url 'https://jitpack.io' }
-        maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
 
         // Both our release and dev repos are imported, whereas library consumers only
         // need our release repo
