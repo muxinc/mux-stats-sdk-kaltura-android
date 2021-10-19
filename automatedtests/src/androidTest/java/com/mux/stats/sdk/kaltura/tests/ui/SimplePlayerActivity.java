@@ -202,8 +202,8 @@ public class SimplePlayerActivity extends AppCompatActivity {
   }
 
   public void startPlayback() {
-//    player.setAutoPlay(false);
-//
+    player.setAutoPlay(false);
+
 //    boolean wasPlaying = false;
 //    if(player.isPlaying()) {
 //      wasPlaying = true;
