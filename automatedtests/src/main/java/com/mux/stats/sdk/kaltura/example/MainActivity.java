@@ -19,7 +19,6 @@ import com.kaltura.tvplayer.KalturaBasicPlayer;
 import com.kaltura.tvplayer.KalturaPlayer;
 import com.kaltura.tvplayer.PlayerInitOptions;
 import com.mux.stats.sdk.kaltura.R;
-import com.mux.stats.sdk.muxkalturasdk.MuxStatsKaltura;
 import java.util.LinkedList;
 
 public class MainActivity extends Activity {
