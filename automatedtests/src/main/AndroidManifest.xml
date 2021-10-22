@@ -16,6 +16,8 @@
 
     <activity
       android:name=".tests.ui.SimplePlayerActivity"
+      android:launchMode="singleInstance"
+      android:clearTaskOnLaunch="true"
       android:configChanges="keyboardHidden"
       android:theme="@style/Theme.AppCompat" />
   </application>

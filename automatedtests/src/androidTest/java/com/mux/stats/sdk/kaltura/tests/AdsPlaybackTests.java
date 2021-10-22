@@ -82,7 +82,7 @@ public class AdsPlaybackTests extends TestBase {
       Thread.sleep(PAUSE_PERIOD_IN_MS);
       // resume the ad playback
       resumePlayer();
-      Thread.sleep((PREROLL_AD_PERIOD / 2) + BUMPER_AD_PERIOD + 5000);
+      Thread.sleep((PREROLL_AD_PERIOD / 2) + BUMPER_AD_PERIOD + 10000);
 
       MuxStatsEventSequence expected = new MuxStatsEventSequence();
       expected
