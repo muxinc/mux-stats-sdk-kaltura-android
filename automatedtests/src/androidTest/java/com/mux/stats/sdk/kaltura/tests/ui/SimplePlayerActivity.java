@@ -232,7 +232,8 @@ public class SimplePlayerActivity extends AppCompatActivity {
     sources.add(source);
     entry.setSources(sources);
 
-    player.setMedia(entry, playbackStartPosition);
+    // It appears this expects _seconds_ not ms
+    player.setMedia(entry, playbackStartPosition / 1000);
     player.setPreload(true);
     player.setAutoPlay(playWhenReady);
 //    if(wasPlaying && !playWhenReady) {

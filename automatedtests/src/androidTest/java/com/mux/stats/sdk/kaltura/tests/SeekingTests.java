@@ -45,7 +45,7 @@ public class SeekingTests extends SeekingTestBase {
       testActivity.waitForActivityToInitialize();
       Thread.sleep(PAUSE_PERIOD_IN_MS);
       resumePlayer();
-      Thread.sleep(PAUSE_PERIOD_IN_MS);
+      Thread.sleep(PLAY_PERIOD_IN_MS * 2);
 
       MuxStatsEventSequence expected = new MuxStatsEventSequence();
       expected
