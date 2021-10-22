@@ -188,7 +188,19 @@ public class SimplePlayerActivity extends AppCompatActivity {
       signalPlaybackEnded();
     });
 
+    addPlayerListener(this, AdEvent.adFirstPlay, event -> {
+      signalPlaybackStarted();
+    });
+
     addPlayerListener(this, AdEvent.started, event -> {
+      signalPlaybackStarted();
+    });
+
+    addPlayerListener(this, AdEvent.adProgress, event -> {
+      signalPlaybackStarted();
+    });
+
+    addPlayerListener(this, AdEvent.adBreakStarted, event -> {
       signalPlaybackStarted();
     });
   }

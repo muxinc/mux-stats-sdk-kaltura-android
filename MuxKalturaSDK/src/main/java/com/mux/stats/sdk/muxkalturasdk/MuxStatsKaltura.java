@@ -58,7 +58,6 @@ import com.mux.stats.sdk.muxstats.INetworkRequest;
 import com.mux.stats.sdk.muxstats.MuxErrorException;
 import com.mux.stats.sdk.muxstats.MuxStats;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class MuxStatsKaltura extends EventBus {
@@ -88,6 +87,8 @@ public class MuxStatsKaltura extends EventBus {
 
   /** This value is used to detect if the user pressed the pause button when an ad was playing */
   private boolean sendPlayOnStarted = false;
+
+  private boolean ignoreNextAdPlay = false;
   /**
    * This value is used in the special case of pre roll ads playing. This value will be set to
    * true when a pre roll is detected, and will be reverted back to false after dispatching the
@@ -284,21 +285,16 @@ public class MuxStatsKaltura extends EventBus {
       }
     });
 
-    playerAdapter.addListener(this, AdEvent.started, event -> {
-      if(state != PlayerState.PLAYING_ADS) {
-        play();
-        pause();
-        state = PlayerState.PLAYING_ADS;
-      }
+    playerAdapter.addListener(this, AdEvent.adFirstPlay, event -> {
+      adPlay(true);
+    });
 
-      // On the first STARTED, do not send AdPlay, as it was handled in
-      // CONTENT_PAUSE_REQUESTED
-      if (sendPlayOnStarted) {
-        dispatchAdPlaybackEvent(new AdPlayEvent(null));
-      } else {
-        sendPlayOnStarted = true;
-      }
-      dispatchAdPlaybackEvent(new AdPlayingEvent(null));
+    playerAdapter.addListener(this, AdEvent.adDisplayedAfterContentPause, event -> {
+      adPlay(true);
+    });
+
+    playerAdapter.addListener(this, AdEvent.started, event -> {
+      adPlay(false);
     });
 
     playerAdapter.addListener(this, AdEvent.firstQuartile, event -> {
@@ -598,6 +594,30 @@ public class MuxStatsKaltura extends EventBus {
 
     dispatch(new EndedEvent(null));
     state = PlayerState.ENDED;
+  }
+
+  private void adPlay(boolean ignoreNext) {
+    if(ignoreNextAdPlay) {
+      ignoreNextAdPlay = ignoreNext;
+      return;
+    }
+
+    ignoreNextAdPlay = ignoreNext;
+
+    if(state != PlayerState.PLAYING_ADS) {
+      play();
+      pause();
+      state = PlayerState.PLAYING_ADS;
+    }
+
+    // On the first STARTED, do not send AdPlay, as it was handled in
+    // CONTENT_PAUSE_REQUESTED
+    if (sendPlayOnStarted) {
+      dispatchAdPlaybackEvent(new AdPlayEvent(null));
+    } else {
+      sendPlayOnStarted = true;
+    }
+    dispatchAdPlaybackEvent(new AdPlayingEvent(null));
   }
 
   private void internalError(Exception error) {
