@@ -192,15 +192,11 @@ public class SimplePlayerActivity extends AppCompatActivity {
       signalPlaybackStarted();
     });
 
+    addPlayerListener(this, AdEvent.adDisplayedAfterContentPause, event -> {
+      signalPlaybackStarted();
+    });
+
     addPlayerListener(this, AdEvent.started, event -> {
-      signalPlaybackStarted();
-    });
-
-    addPlayerListener(this, AdEvent.adProgress, event -> {
-      signalPlaybackStarted();
-    });
-
-    addPlayerListener(this, AdEvent.adBreakStarted, event -> {
       signalPlaybackStarted();
     });
   }
@@ -216,12 +212,6 @@ public class SimplePlayerActivity extends AppCompatActivity {
   public void startPlayback() {
     player.setAutoPlay(false);
 
-//    boolean wasPlaying = false;
-//    if(player.isPlaying()) {
-//      wasPlaying = true;
-//      player.pause();
-//    }
-
     PKMediaEntry entry = new PKMediaEntry();
     entry.setId("testvid_"+urlToPlay);
     entry.setMediaType(MediaEntryType.Vod);
@@ -236,9 +226,6 @@ public class SimplePlayerActivity extends AppCompatActivity {
     player.setMedia(entry, playbackStartPosition / 1000);
     player.setPreload(true);
     player.setAutoPlay(playWhenReady);
-//    if(wasPlaying && !playWhenReady) {
-//      player.play();
-//    }
   }
 
   public KalturaPlayer getPlayer() {
