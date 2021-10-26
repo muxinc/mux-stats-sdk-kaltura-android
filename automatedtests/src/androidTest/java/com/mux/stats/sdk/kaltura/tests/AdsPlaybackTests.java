@@ -50,7 +50,7 @@ public class AdsPlaybackTests extends TestBase {
           .add("adbreakstart", 0)
           .add("adplay", 0)
           .add("adplaying", MuxStatsEventSequence.DELTA_DONT_CARE)
-          .add("adended", MuxStatsEventSequence.DELTA_DONT_CARE)
+          .add("adended", 10000)
           .add("adbreakend", 0)
           .add("play", 0)
           .add("playing", 0);
@@ -82,7 +82,7 @@ public class AdsPlaybackTests extends TestBase {
       Thread.sleep(PAUSE_PERIOD_IN_MS);
       // resume the ad playback
       resumePlayer();
-      Thread.sleep(PREROLL_AD_PERIOD + BUMPER_AD_PERIOD * 2);
+      Thread.sleep((PREROLL_AD_PERIOD / 2) + BUMPER_AD_PERIOD + 10000);
 
       MuxStatsEventSequence expected = new MuxStatsEventSequence();
       expected
@@ -93,15 +93,15 @@ public class AdsPlaybackTests extends TestBase {
           .add("adbreakstart", 0)
           .add("adplay", 0)
           .add("adplaying", MuxStatsEventSequence.DELTA_DONT_CARE)
-          .add("adpause", MuxStatsEventSequence.DELTA_DONT_CARE)
+          .add("adpause", 5000)
           .add("adplay", 3000)
           .add("adplaying", 0)
-          .add("adended", MuxStatsEventSequence.DELTA_DONT_CARE)
+          .add("adended", 5000)
           .add("play", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("pause", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("adplay", 0)
-          .add("adplaying", 0)
-          .add("adended", MuxStatsEventSequence.DELTA_DONT_CARE)
+          .add("adplaying", MuxStatsEventSequence.DELTA_DONT_CARE)
+          .add("adended", 5000)
           .add("adbreakend", 0)
           .add("play", 0)
           .add("playing", 0);

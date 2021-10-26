@@ -188,6 +188,14 @@ public class SimplePlayerActivity extends AppCompatActivity {
       signalPlaybackEnded();
     });
 
+    addPlayerListener(this, AdEvent.adFirstPlay, event -> {
+      signalPlaybackStarted();
+    });
+
+    addPlayerListener(this, AdEvent.adDisplayedAfterContentPause, event -> {
+      signalPlaybackStarted();
+    });
+
     addPlayerListener(this, AdEvent.started, event -> {
       signalPlaybackStarted();
     });
@@ -202,13 +210,7 @@ public class SimplePlayerActivity extends AppCompatActivity {
   }
 
   public void startPlayback() {
-//    player.setAutoPlay(false);
-//
-//    boolean wasPlaying = false;
-//    if(player.isPlaying()) {
-//      wasPlaying = true;
-//      player.pause();
-//    }
+    player.setAutoPlay(false);
 
     PKMediaEntry entry = new PKMediaEntry();
     entry.setId("testvid_"+urlToPlay);
@@ -220,12 +222,10 @@ public class SimplePlayerActivity extends AppCompatActivity {
     sources.add(source);
     entry.setSources(sources);
 
-    player.setMedia(entry, playbackStartPosition);
+    // It appears this expects _seconds_ not ms
+    player.setMedia(entry, playbackStartPosition / 1000);
     player.setPreload(true);
     player.setAutoPlay(playWhenReady);
-//    if(wasPlaying && !playWhenReady) {
-//      player.play();
-//    }
   }
 
   public KalturaPlayer getPlayer() {
