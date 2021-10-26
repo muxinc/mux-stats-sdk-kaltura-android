@@ -24,3 +24,12 @@ steps:
         download:
           - "automatedtests/build/outputs/apk/debug/automatedtests-debug.apk"
           - "automatedtests/build/outputs/apk/androidTest/debug/automatedtests-debug-androidTest.apk"
+- wait
+- block: ":rocket: Deploy and release!"
+  blocked_state: failed
+  branches: "master"
+- wait
+- agents: [ dind=true,queue=beta ]
+  command: ./.buildkite/deploy.sh
+  label: Deploy artifacts to release maven if it all worked
+  branches: "master"

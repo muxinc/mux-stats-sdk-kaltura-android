@@ -45,7 +45,7 @@ task clean(type: Delete) {
 //
 // It must be false for fat aar generation of MuxKalturaSDK to work
 // This is a bug/problem with the fat aar mechanism
-def inLocalDevModeFlag = true
+def inLocalDevModeFlag = false
 
 // Version name
 // This gets modified based on if we're a release or branch build
@@ -178,10 +178,10 @@ artifactory {
     }
 }
 
-def deployVariant(variant) {
+def deployVariant() {
     def stdout = new ByteArrayOutputStream()
     exec {
-        commandLine 'curl', '-u', "${artifactory_user}:${artifactory_password}", '-X', "POST", "https://muxinc.jfrog.io/artifactory/api/copy/default-maven-local/com/mux/stats/sdk/muxstats/MuxKalturaSDK_" +variant+"/" + packageVersionName + "?to=/default-maven-release-local/com/mux/stats/sdk/muxstats/MuxKalturaSDK_" +variant+"/" + packageVersionName
+        commandLine 'curl', '-u', "${artifactory_user}:${artifactory_password}", '-X', "POST", "https://muxinc.jfrog.io/artifactory/api/copy/default-maven-local/com/mux/stats/sdk/muxstats/MuxKalturaSDK/" + packageVersionName + "?to=/default-maven-release-local/com/mux/stats/sdk/muxstats/MuxKalturaSDK/" + packageVersionName
         standardOutput = stdout
     }
     def msg = stdout.toString()
@@ -193,7 +193,7 @@ task muxReleaseDeploy {
         if(isAReleaseBuild) {
             println("Deploying from local maven to release maven")
 
-            deployVariant("release")
+            deployVariant()
 
             println("Release deployment complete")
         } else {
