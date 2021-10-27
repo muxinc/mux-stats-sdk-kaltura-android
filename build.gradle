@@ -114,8 +114,7 @@ def gitHash = getGitHash()
 def gitBranch = getGitBranch()
 def gitCommitMessageVersion = getGitCommitMessageVersion()
 
-//def isAReleaseBuild = gitBranch == "master" && gitCommitMessageVersion != null
-def isAReleaseBuild = true
+def isAReleaseBuild = gitBranch == "master" && gitCommitMessageVersion != null
 
 if(isAReleaseBuild) {
     packageVersionName = gitCommitMessageVersion
