@@ -178,10 +178,11 @@ artifactory {
     }
 }
 
-def deployVariant() {
+def deployVariant(String versionName) {
+    println("Deploying "+versionName)
     def stdout = new ByteArrayOutputStream()
     exec {
-        commandLine 'curl', '-u', "${artifactory_user}:${artifactory_password}", '-X', "POST", "https://muxinc.jfrog.io/artifactory/api/copy/default-maven-local/com/mux/stats/sdk/muxstats/MuxKalturaSDK/" + packageVersionName + "?to=/default-maven-release-local/com/mux/stats/sdk/muxstats/MuxKalturaSDK/" + packageVersionName
+        commandLine 'curl', '-u', "${artifactory_user}:${artifactory_password}", '-X', "POST", "https://muxinc.jfrog.io/artifactory/api/copy/default-maven-local/com/mux/stats/sdk/muxstats/MuxKalturaSDK/" + versionName + "?to=/default-maven-release-local/com/mux/stats/sdk/muxstats/MuxKalturaSDK/" + versionName
         standardOutput = stdout
     }
     def msg = stdout.toString()
@@ -193,7 +194,7 @@ task muxReleaseDeploy {
         if(isAReleaseBuild) {
             println("Deploying from local maven to release maven")
 
-            deployVariant()
+            deployVariant(packageVersionName)
 
             println("Release deployment complete")
         } else {
