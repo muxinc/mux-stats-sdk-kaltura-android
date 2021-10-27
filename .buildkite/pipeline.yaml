@@ -32,4 +32,4 @@ steps:
 - agents: [ dind=true,queue=beta ]
   command: ./.buildkite/deploy.sh
   label: Deploy artifacts to release maven if it all worked
-#  branches: "master"
+  branches: "master"
