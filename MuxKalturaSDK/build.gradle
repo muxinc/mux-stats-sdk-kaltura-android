@@ -32,29 +32,15 @@ android {
     }
 }
 
+apply from: '../MuxAndroidSDKPublishing/fataar_flavor.gradle', to: android
+
 dependencies {
     api 'com.kaltura.playkit:playkit:4.16.0@aar'
     api 'com.kaltura.player:tvplayer:4.16.0'
 
-    // This is due to the problem with fat aar bundling
-    // See item #1 https://github.com/kezong/fat-aar-android#known-defects-or-issues
     def muxCoreImport = 'com.mux:stats.muxcore:7.0.2'
-    if(project.ext.inLocalDevMode) {
-        api muxCoreImport
-    } else {
-        embed muxCoreImport
-    }
+    isFatAarEmbed muxCoreImport
+    notFatAarApi muxCoreImport
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = "com.mux.stats.sdk.muxstats"
-                artifactId = "MuxKalturaSDK"
-                version = project.ext.versionName
-            }
-        }
-    }
-}
+apply from: '../MuxAndroidSDKPublishing/declare_publication.gradle'
