@@ -22,8 +22,8 @@ steps:
   plugins:
     - artifacts#v1.3.0:
         download:
-          - "automatedtests/build/outputs/apk/isFatAar/debug/automatedtests-debug.apk"
-          - "automatedtests/build/outputs/apk/androidTest/isFatAar/debug/automatedtests-debug-androidTest.apk"
+          - "automatedtests/build/outputs/apk/isFatAar/debug/automatedtests-isFatAar-debug.apk"
+          - "automatedtests/build/outputs/apk/androidTest/isFatAar/debug/automatedtests-isFatAar-debug-androidTest.apk"
 - wait
 - block: ":rocket: Deploy and release!"
   blocked_state: failed
