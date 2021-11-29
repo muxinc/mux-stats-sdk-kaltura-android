@@ -34,12 +34,11 @@ android {
     }
 }
 
+apply from: '../MuxAndroidSDKPublishing/fataar_flavor.gradle', to: android
+
 dependencies {
-    if(project.ext.inLocalDevMode) {
-        implementation project(':MuxKalturaSDK')
-    } else {
-        api 'com.mux.stats.sdk.muxstats:MuxKalturaSDK:'+project.ext.versionName
-    }
+    notFatAarImplementation project(':MuxKalturaSDK')
+    isFatAarApi 'com.mux.stats.sdk.muxstats:MuxKalturaSDK:'+project.ext.versionName
 
     implementation 'com.kaltura.player:tvplayer:4.16.0'
     implementation 'com.kaltura.playkit:imaplugin:4.16.0'
