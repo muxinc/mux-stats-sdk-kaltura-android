@@ -57,6 +57,7 @@ import com.mux.stats.sdk.muxstats.IDevice;
 import com.mux.stats.sdk.muxstats.INetworkRequest;
 import com.mux.stats.sdk.muxstats.LogPriority;
 import com.mux.stats.sdk.muxstats.MuxErrorException;
+import com.mux.stats.sdk.muxstats.MuxSDKViewPresentation;
 import com.mux.stats.sdk.muxstats.MuxStats;
 import java.lang.ref.WeakReference;
 import java.util.UUID;
@@ -427,6 +428,11 @@ public class MuxStatsKaltura extends EventBus {
   @SuppressWarnings("unused")
   public void orientationChange(MuxSDKViewOrientation orientation) {
     muxStats.orientationChange(orientation);
+  }
+
+  @SuppressWarnings("unused")
+  public void presentationChange(MuxSDKViewPresentation presentation) {
+    muxStats.presentationChange(presentation);
   }
 
   @SuppressWarnings("unused")
