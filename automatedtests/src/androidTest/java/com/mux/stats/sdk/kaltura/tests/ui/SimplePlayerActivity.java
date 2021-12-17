@@ -301,7 +301,7 @@ public class SimplePlayerActivity extends AppCompatActivity {
     customerVideoData.setVideoTitle(videoTitle);
     mockNetwork = new MockNetworkRequest();
     CustomerData customerData = new CustomerData(customerPlayerData, customerVideoData, null);
-    muxStats = new MuxStatsKaltura(this, player, "demo-player", customerData, new CustomOptions().setSentryEnabled(false), mockNetwork);
+    muxStats = new MuxStatsKaltura(this, player, "demo-player", customerData, new CustomOptions(), mockNetwork);
     Point size = new Point();
     getWindowManager().getDefaultDisplay().getSize(size);
     muxStats.setScreenSize(size.x, size.y);
