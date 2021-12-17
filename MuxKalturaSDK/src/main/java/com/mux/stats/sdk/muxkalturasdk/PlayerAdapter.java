@@ -116,6 +116,84 @@ public abstract class PlayerAdapter implements IPlayerListener {
     return playbackPosition;
   }
 
+  /**
+   * This method is not supported for Kaltura at this time
+   * @return null
+   * @deprecated This method is not supported for Kaltura at this time
+   */
+  @Deprecated
+  @Override
+  public Long getPlayerProgramTime() {
+    // TODO: Kaltura is also based on ExoPlayer so we should be able to get at latency metrics
+    //   if we can get past all the abstraction
+    return null;
+  }
+
+  /**
+   * This method is not supported for Kaltura at this time
+   * @return null
+   * @deprecated This method is not supported for Kaltura at this time
+   */
+  @Deprecated
+  @Override
+  public Long getPlayerManifestNewestTime() {
+    // TODO: Kaltura is also based on ExoPlayer so we should be able to get at latency metrics
+    //   if we can get past all the abstraction
+    return null;
+  }
+
+  /**
+   * This method is not supported for Kaltura at this time
+   * @return null
+   * @deprecated This method is not supported for Kaltura at this time
+   */
+  @Deprecated
+  @Override
+  public Long getVideoHoldback() {
+    // TODO: Kaltura is also based on ExoPlayer so we should be able to get at latency metrics
+    //   if we can get past all the abstraction
+    return null;
+  }
+
+  /**
+   * This method is not supported for Kaltura at this time
+   * @return null
+   * @deprecated This method is not supported for Kaltura at this time
+   */
+  @Deprecated
+  @Override
+  public Long getVideoPartHoldback() {
+    // TODO: Kaltura is also based on ExoPlayer so we should be able to get at latency metrics
+    //   if we can get past all the abstraction
+    return null;
+  }
+
+  /**
+   * This method is not supported for Kaltura at this time
+   * @return null
+   * @deprecated This method is not supported for Kaltura at this time
+   */
+  @Deprecated
+  @Override
+  public Long getVideoPartTargetDuration() {
+    // TODO: Kaltura is also based on ExoPlayer so we should be able to get at latency metrics
+    //   if we can get past all the abstraction
+    return null;
+  }
+
+  /**
+   * This method is not supported for Kaltura at this time
+   * @return null
+   * @deprecated This method is not supported for Kaltura at this time
+   */
+  @Deprecated
+  @Override
+  public Long getVideoTargetDuration() {
+    // TODO: Kaltura is also based on ExoPlayer so we should be able to get at latency metrics
+    //   if we can get past all the abstraction
+    return null;
+  }
+
   // Actually query the underlying player - must be called on main thread
   public abstract long getInnerCurrentPosition();
 
