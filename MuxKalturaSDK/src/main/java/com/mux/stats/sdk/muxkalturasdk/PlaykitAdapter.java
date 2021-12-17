@@ -111,4 +111,5 @@ class PlaykitAdapter extends PlayerAdapter {
     }
     return false;
   }
+
 }
