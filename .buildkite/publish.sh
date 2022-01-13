@@ -11,7 +11,7 @@ docker run -it -v --rm  \
     -e ORG_GRADLE_PROJECT_artifactory_user=$ORG_GRADLE_PROJECT_artifactory_user \
     -e ORG_GRADLE_PROJECT_artifactory_password=$ORG_GRADLE_PROJECT_artifactory_password \
     -w /data \
-    muxinc/mux-exoplayer:20201215 \
+    muxinc/mux-exoplayer:20220112 \
     bash -c "./gradlew --info MuxKalturaSDK:clean MuxKalturaSDK:assemble MuxKalturaSDK:artifactoryPublish"
 
 docker run -it -v --rm  \
@@ -23,5 +23,5 @@ docker run -it -v --rm  \
     -e ORG_GRADLE_PROJECT_artifactory_user=$ORG_GRADLE_PROJECT_artifactory_user \
     -e ORG_GRADLE_PROJECT_artifactory_password=$ORG_GRADLE_PROJECT_artifactory_password \
     -w /data \
-    muxinc/mux-exoplayer:20201215 \
+    muxinc/mux-exoplayer:20220112 \
     bash -c "./gradlew --info automatedtests:assemble automatedtests:assembleAndroidTest"
