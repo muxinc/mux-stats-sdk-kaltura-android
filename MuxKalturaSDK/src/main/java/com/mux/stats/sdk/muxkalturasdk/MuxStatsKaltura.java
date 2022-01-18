@@ -55,7 +55,9 @@ import com.mux.stats.sdk.core.model.ViewData;
 import com.mux.stats.sdk.core.util.MuxLogger;
 import com.mux.stats.sdk.muxstats.IDevice;
 import com.mux.stats.sdk.muxstats.INetworkRequest;
+import com.mux.stats.sdk.muxstats.LogPriority;
 import com.mux.stats.sdk.muxstats.MuxErrorException;
+import com.mux.stats.sdk.muxstats.MuxSDKViewPresentation;
 import com.mux.stats.sdk.muxstats.MuxStats;
 import java.lang.ref.WeakReference;
 import java.util.UUID;
@@ -429,6 +431,11 @@ public class MuxStatsKaltura extends EventBus {
   }
 
   @SuppressWarnings("unused")
+  public void presentationChange(MuxSDKViewPresentation presentation) {
+    muxStats.presentationChange(presentation);
+  }
+
+  @SuppressWarnings("unused")
   public void setPlayerSize(int width, int height) {
     muxStats.setPlayerSize(width, height);
   }
@@ -795,6 +802,23 @@ public class MuxStatsKaltura extends EventBus {
     @Override
     public long getElapsedRealtime() {
       return elapsedRealtime();
+    }
+
+    @Override
+    public void outputLog(LogPriority logPriority, String tag, String message) {
+      switch (logPriority) {
+        case ERROR:
+          Log.e(tag, message);
+        case DEBUG:
+          Log.d(tag, message);
+        case WARN:
+          Log.w(tag, message);
+        case INFO:
+          Log.w(tag, message);
+        default: // fall-through
+        case VERBOSE:
+          Log.v(tag, message);
+      }
     }
 
     /**

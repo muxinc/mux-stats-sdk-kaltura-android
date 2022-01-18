@@ -10,8 +10,6 @@ android {
     defaultConfig {
         minSdk 24
         targetSdk 30
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -38,7 +36,7 @@ dependencies {
 
     // This is due to the problem with fat aar bundling
     // See item #1 https://github.com/kezong/fat-aar-android#known-defects-or-issues
-    def muxCoreImport = 'com.mux:stats.muxcore:7.0.2'
+    def muxCoreImport = 'com.mux:stats.muxcore:7.0.7'
     if(project.ext.inLocalDevMode) {
         api muxCoreImport
     } else {
