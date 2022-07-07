@@ -14,7 +14,7 @@ docker run -it --rm  \
     docker.io/muxinc/mux-exoplayer:20220112 \
     bash -c "./gradlew --info MuxKalturaSDK:clean MuxKalturaSDK:assemble MuxKalturaSDK:artifactoryPublish"
 
-docker run -it -v --rm  \
+docker run -it --rm  \
     -v $(pwd):/data \
     -e BUILDKITE_BRANCH="$BUILDKITE_BRANCH" \
     -e ORG_GRADLE_PROJECT_signingKeyId="$ORG_GRADLE_PROJECT_signingKeyId" \
