@@ -39,7 +39,7 @@ public abstract class TestBase {
   @Rule
   public TestName currentTestName = new TestName();
 
-  static final int PLAY_PERIOD_IN_MS = 10000;
+  static final int PLAY_PERIOD_IN_MS = 22000;
   static final int PAUSE_PERIOD_IN_MS = 3000;
   static final int WAIT_FOR_NETWORK_PERIOD_IN_MS = 12000;
   protected int runHttpServerOnPort = 5000;
