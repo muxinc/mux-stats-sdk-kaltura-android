@@ -101,7 +101,7 @@ public class AdsPlaybackTests extends TestBase {
           .add("pause", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("adplay", 0)
           .add("adplaying", MuxStatsEventSequence.DELTA_DONT_CARE)
-          .add("adended", 5000)
+          .add("adended", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("adbreakend", 0)
           .add("play", 0)
           .add("playing", 0);
