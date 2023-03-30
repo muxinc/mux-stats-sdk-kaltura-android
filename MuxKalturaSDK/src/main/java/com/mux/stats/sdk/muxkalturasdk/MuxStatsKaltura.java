@@ -702,8 +702,38 @@ public class MuxStatsKaltura extends EventBus {
     }
 
     @Override
+    public String getMuxOSFamily() {
+      return null;
+    }
+
+    @Override
     public String getOSVersion() {
       return Build.VERSION.RELEASE + " (" + Build.VERSION.SDK_INT + ")";
+    }
+
+    @Override
+    public String getMuxOSVersion() {
+      return null;
+    }
+
+    @Override
+    public String getDeviceName() {
+      return null;
+    }
+
+    @Override
+    public String getMuxDeviceName() {
+      return null;
+    }
+
+    @Override
+    public String getDeviceCategory() {
+      return "";
+    }
+
+    @Override
+    public String getMuxDeviceCategory() {
+      return null;
     }
 
     @Override
@@ -712,8 +742,18 @@ public class MuxStatsKaltura extends EventBus {
     }
 
     @Override
+    public String getMuxManufacturer() {
+      return null;
+    }
+
+    @Override
     public String getModelName() {
       return Build.MODEL;
+    }
+
+    @Override
+    public String getMuxModelName() {
+      return null;
     }
 
     @Override
@@ -802,6 +842,23 @@ public class MuxStatsKaltura extends EventBus {
     @Override
     public long getElapsedRealtime() {
       return elapsedRealtime();
+    }
+
+    @Override
+    public void outputLog(LogPriority logPriority, String tag, String message, Throwable throwable) {
+      switch (logPriority) {
+        case ERROR:
+          Log.e(tag, message, throwable);
+        case DEBUG:
+          Log.d(tag, message, throwable);
+        case WARN:
+          Log.w(tag, message, throwable);
+        case INFO:
+          Log.w(tag, message, throwable);
+        default: // fall-through
+        case VERBOSE:
+          Log.v(tag, message, throwable);
+      }
     }
 
     @Override
