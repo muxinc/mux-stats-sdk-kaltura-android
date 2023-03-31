@@ -4,12 +4,12 @@ apply plugin: 'signing'
 apply plugin: 'com.kezong.fat-aar'
 
 android {
-    compileSdk 30
+    compileSdk project.ext.compileSdkVersion
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        minSdk 24
-        targetSdk 30
+        minSdk project.ext.minSdkVersion
+        targetSdk project.ext.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -28,15 +28,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+  namespace 'com.mux.stats.sdk.muxkalturasdk'
 }
 
 dependencies {
-    api 'com.kaltura.playkit:playkit:4.16.0@aar'
-    api 'com.kaltura.player:tvplayer:4.16.0'
+    api 'com.kaltura.playkit:playkit:4.28.0@aar'
+    api 'com.kaltura.player:tvplayer:4.28.0'
 
     // This is due to the problem with fat aar bundling
     // See item #1 https://github.com/kezong/fat-aar-android#known-defects-or-issues
-    def muxCoreImport = 'com.mux:stats.muxcore:7.0.10'
+    def muxCoreImport = 'com.mux:stats.muxcore:7.8.0'
     if(project.ext.inLocalDevMode) {
         api muxCoreImport
     } else {

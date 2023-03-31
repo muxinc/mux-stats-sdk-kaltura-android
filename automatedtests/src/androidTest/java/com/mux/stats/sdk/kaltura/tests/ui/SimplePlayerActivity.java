@@ -1,24 +1,23 @@
 package com.mux.stats.sdk.kaltura.tests.ui;
 
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.support.v4.media.session.MediaSessionCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.kaltura.playkit.PKEvent;
 import com.kaltura.playkit.PKEvent.Listener;
 import com.kaltura.playkit.PKMediaEntry;
 import com.kaltura.playkit.PKMediaEntry.MediaEntryType;
 import com.kaltura.playkit.PKMediaSource;
 import com.kaltura.playkit.PKPluginConfigs;
-import com.kaltura.playkit.PKRequestConfig;
 import com.kaltura.playkit.PlayerEvent;
 import com.kaltura.playkit.plugins.ads.AdEvent;
 import com.kaltura.playkit.plugins.ima.IMAConfig;
@@ -35,6 +34,7 @@ import com.mux.stats.sdk.kaltura.R;
 import com.mux.stats.sdk.kaltura.example.Constants;
 import com.mux.stats.sdk.kaltura.tests.MockNetworkRequest;
 import com.mux.stats.sdk.muxkalturasdk.MuxStatsKaltura;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
@@ -60,7 +60,6 @@ public class SimplePlayerActivity extends AppCompatActivity {
   boolean playWhenReady = true;
   MockNetworkRequest mockNetwork;
   AtomicBoolean onResumedCalled = new AtomicBoolean(false);
-  MediaSessionCompat mediaSessionCompat;
   long playbackStartPosition = 0;
 
   Lock activityLock = new ReentrantLock();

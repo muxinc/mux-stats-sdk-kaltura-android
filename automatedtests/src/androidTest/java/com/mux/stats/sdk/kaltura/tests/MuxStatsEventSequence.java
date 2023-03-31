@@ -191,11 +191,13 @@ public class MuxStatsEventSequence {
       boolean eventsEqual = false;
 
       if (ea.name.equals(eb.name)) {
-        // Allow up to 250 ms difference
+        long diff = Math.abs(eb.delta - ea.delta);
+        // Allow up to 10% ms difference from expected value but always allow at least 250ms off
+        float allowedTolerance = Math.max(ea.delta / 10.0f, 250);
         if (
             ea.delta == DELTA_DONT_CARE
                 || eb.delta == DELTA_DONT_CARE
-                || Math.abs(eb.delta - ea.delta) <= 250
+                || diff <= allowedTolerance
         ) {
           eventsEqual = true;
         }

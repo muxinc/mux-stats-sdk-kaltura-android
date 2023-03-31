@@ -39,7 +39,7 @@ public abstract class TestBase {
   @Rule
   public TestName currentTestName = new TestName();
 
-  static final int PLAY_PERIOD_IN_MS = 10000;
+  static final int PLAY_PERIOD_IN_MS = 22000;
   static final int PAUSE_PERIOD_IN_MS = 3000;
   static final int WAIT_FOR_NETWORK_PERIOD_IN_MS = 12000;
   protected int runHttpServerOnPort = 5000;
@@ -60,7 +60,7 @@ public abstract class TestBase {
   // the regular amount of bytes to send.
   // This will stop server completely, this will allow us to easier calculate the rebuffer period
   protected int networkJamFactor = 4;
-  protected int waitForPlaybackToStartInMS = 30000;
+  protected int waitForPlaybackToStartInMS = 50000;
 
   protected SimplePlayerActivity testActivity;
   protected Activity currentActivity;

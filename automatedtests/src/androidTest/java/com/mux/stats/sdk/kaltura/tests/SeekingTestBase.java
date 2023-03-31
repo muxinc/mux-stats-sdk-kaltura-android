@@ -35,7 +35,7 @@ public class SeekingTestBase extends TestBase {
           .add("viewstart", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("play", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("playing", MuxStatsEventSequence.DELTA_DONT_CARE)
-          .add("pause", 10000)
+          .add("pause", PLAY_PERIOD_IN_MS)
           .add("seeking", 3000)
           .add("seeked", MuxStatsEventSequence.DELTA_DONT_CARE);
 
@@ -68,7 +68,7 @@ public class SeekingTestBase extends TestBase {
           .add("viewstart", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("play", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("playing", MuxStatsEventSequence.DELTA_DONT_CARE)
-          .add("pause", 10000)
+          .add("pause", PLAY_PERIOD_IN_MS)
           .add("seeking", 0)
           .add("seeked", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("playing", MuxStatsEventSequence.DELTA_DONT_CARE);

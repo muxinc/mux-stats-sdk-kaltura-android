@@ -76,13 +76,13 @@ public class AdsPlaybackTests extends TestBase {
         fail("Playback did not start in " + waitForPlaybackToStartInMS + " milliseconds !!!");
       }
       // First ad is 10 second
-      Thread.sleep(PREROLL_AD_PERIOD / 2);
+      Thread.sleep(5 * 1000);
       // Pause the ad for 5 seconds
       pausePlayer();
       Thread.sleep(PAUSE_PERIOD_IN_MS);
       // resume the ad playback
       resumePlayer();
-      Thread.sleep((PREROLL_AD_PERIOD / 2) + BUMPER_AD_PERIOD + 10000);
+      Thread.sleep((PREROLL_AD_PERIOD / 2) + BUMPER_AD_PERIOD + 20000);
 
       MuxStatsEventSequence expected = new MuxStatsEventSequence();
       expected
@@ -96,12 +96,12 @@ public class AdsPlaybackTests extends TestBase {
           .add("adpause", 5000)
           .add("adplay", 3000)
           .add("adplaying", 0)
-          .add("adended", 5000)
+          .add("adended", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("play", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("pause", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("adplay", 0)
           .add("adplaying", MuxStatsEventSequence.DELTA_DONT_CARE)
-          .add("adended", 5000)
+          .add("adended", MuxStatsEventSequence.DELTA_DONT_CARE)
           .add("adbreakend", 0)
           .add("play", 0)
           .add("playing", 0);

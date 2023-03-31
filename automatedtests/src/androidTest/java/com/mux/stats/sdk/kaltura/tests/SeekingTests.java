@@ -73,7 +73,7 @@ public class SeekingTests extends SeekingTestBase {
       if (!testActivity.waitForPlaybackToStart(waitForPlaybackToStartInMS)) {
         fail("Playback did not start in " + waitForPlaybackToStartInMS + " milliseconds !!!");
       }
-      Thread.sleep(PAUSE_PERIOD_IN_MS);
+      Thread.sleep(PLAY_PERIOD_IN_MS);
 
       MuxStatsEventSequence expected = new MuxStatsEventSequence();
       expected
