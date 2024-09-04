@@ -36,11 +36,7 @@ android {
 }
 
 dependencies {
-    if(project.ext.inLocalDevMode) {
-        implementation project(':MuxKalturaSDK')
-    } else {
-        api 'com.mux.stats.sdk.muxstats:MuxKalturaSDK:'+project.ext.versionName
-    }
+    implementation project(':MuxKalturaSDK')
 
     implementation 'com.kaltura.player:tvplayer:4.28.0'
     implementation 'com.kaltura.playkit:imaplugin:4.28.0'
