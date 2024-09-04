@@ -59,16 +59,3 @@ dependencies {
 
     api 'com.mux:stats.muxcore:7.8.0'
 }
-
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//                groupId = "com.mux.stats.sdk.muxstats"
-//                artifactId = "MuxKalturaSDK"
-//                version = project.ext.versionName
-//            }
-//        }
-//    }
-//}

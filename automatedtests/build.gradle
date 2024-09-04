@@ -4,7 +4,6 @@ plugins {
 
 android {
     compileSdk project.ext.compileSdkVersion
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.mux.stats.sdk.kaltura"
