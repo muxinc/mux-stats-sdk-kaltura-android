@@ -36,8 +36,7 @@ android {
 }
 
 dependencies {
-    implementation project(':MuxKalturaSDK')
-
+    implementation project(':library')
     implementation 'com.kaltura.player:tvplayer:4.28.0'
     implementation 'com.kaltura.playkit:imaplugin:4.28.0'
 
