@@ -64,9 +64,9 @@ public class MainActivity extends Activity {
   private void updateUI() {
     if(player != null) {
       if(player.isPlaying()) {
-        playButton.setImageResource(R.drawable.exo_controls_pause);
+        playButton.setImageResource(android.R.drawable.ic_media_pause);
       } else {
-        playButton.setImageResource(R.drawable.exo_controls_play);
+        playButton.setImageResource(android.R.drawable.ic_media_play);
       }
     }
   }
