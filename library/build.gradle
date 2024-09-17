@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+apply plugin: 'com.mux.gradle.android.mux-android-distribution'
+
+android {
+    compileSdk project.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdk project.ext.minSdkVersion
+        targetSdk project.ext.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "MUX_PLUGIN_VERSION", "\"${versionName}\"")
+        buildConfigField("String", "MUX_PLUGIN_NAME", "\"android-kaltura-mux\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+  namespace 'com.mux.stats.sdk.muxkalturasdk'
+}
+
+muxDistribution {
+    devVersion versionFromCommitHash('dev-')
+    releaseVersion versionFromTag()
+    artifactIds just("MuxKalturaSDK")
+    groupIds just("com.mux.stats.sdk.muxstats")
+    publishIf { it.containsIgnoreCase("release") }
+    publicReleaseIf releaseIfCmdFlag("publicRelease")
+
+    dokkaConfig {
+        moduleName = "Mux Data SDK for Kaltura PlayKit"
+        footer = "(c) " + new Date().format("yyyy") + " Mux, Inc. Have questions or need help?" +
+                " Contact support@mux.com"
+    }
+
+    // TODO: This is kinda clumsy, packageJavadocs should be a function not a property probably
+    packageJavadocs = releaseIfCmdFlag("publicRelease").call()
+    artifactoryConfig {
+        contextUrl = "https://muxinc.jfrog.io/artifactory/"
+        releaseRepoKey = 'default-maven-release-local'
+        devRepoKey = 'default-maven-local'
+    }
+}
+
+dependencies {
+    api 'com.kaltura.playkit:playkit:4.28.0@aar'
+    api 'com.kaltura.player:tvplayer:4.28.0'
+
+    api 'com.mux:stats.muxcore:7.8.0'
+}

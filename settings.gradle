@@ -1,3 +1,4 @@
 rootProject.name = "mux-stats-sdk-kaltura"
-include ':MuxKalturaSDK'
+include ':library'
 include ':automatedtests'
+include ':app'

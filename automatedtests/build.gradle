@@ -4,7 +4,6 @@ plugins {
 
 android {
     compileSdk project.ext.compileSdkVersion
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.mux.stats.sdk.kaltura"
@@ -18,7 +17,9 @@ android {
         buildConfigField("boolean", "SHOULD_REPORT_INSTRUMENTATION_TEST_EVENTS_TO_SERVER", "true")
         buildConfigField("String", "INSTRUMENTATION_TEST_ENVIRONMENT_KEY", "\"YOUR_ENV_KEY_HERE\"")
     }
-
+    buildFeatures {
+        buildConfig true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -36,12 +37,7 @@ android {
 }
 
 dependencies {
-    if(project.ext.inLocalDevMode) {
-        implementation project(':MuxKalturaSDK')
-    } else {
-        api 'com.mux.stats.sdk.muxstats:MuxKalturaSDK:'+project.ext.versionName
-    }
-
+    implementation project(':library')
     implementation 'com.kaltura.player:tvplayer:4.28.0'
     implementation 'com.kaltura.playkit:imaplugin:4.28.0'
 
